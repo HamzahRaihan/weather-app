@@ -5,7 +5,7 @@ const HourlyForecastWidget = () => {
   return (
     <Card>
       <CardContent className="flex flex-col gap-2 h-full">
-        <div className="flex items-center gap-1">
+        <div className="flex items-center font-bold gap-1 text-sm">
           <ClockIcon />
           <p>Hourly Forcast</p>
         </div>

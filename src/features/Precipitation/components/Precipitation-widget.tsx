@@ -6,7 +6,7 @@ const PrecipitationWidget = () => {
     <Card>
       <CardContent>
         <div className="flex flex-col gap-2">
-          <div className="flex gap-1 items-center">
+          <div className="flex gap-1 items-center font-bold text-sm">
             <BiSolidDroplet />
             <p>Precipitation</p>
           </div>
