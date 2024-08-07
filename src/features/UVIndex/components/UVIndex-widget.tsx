@@ -7,7 +7,7 @@ const UVIndexWidget = () => {
       <CardContent className="h-full">
         <div className="flex flex-col gap-4 justify-between h-full">
           <div className="flex flex-col gap-1">
-            <p className="flex items-center gap-1 text-sm">
+            <p className="flex items-center font-bold gap-1 text-sm">
               <MdSunny /> UV Index
             </p>
             <div className="flex flex-col gap-0">

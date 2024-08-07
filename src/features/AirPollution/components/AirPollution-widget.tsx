@@ -7,7 +7,7 @@ const AirPollutionWidget = () => {
       <CardContent className="h-full">
         <div className="flex flex-col gap-4 h-full justify-between">
           <div className="flex flex-col gap-1">
-            <p className="flex items-center gap-1 text-sm">
+            <p className="flex items-center gap-1 font-bold text-sm">
               <GiAbstract030 /> Air Pollution
             </p>
             <div className="font-bold text-xl">Fair Air Quality</div>

@@ -1,8 +1,8 @@
 import { Card, CardContent } from '@/components/ui/card';
-import GetCurrentWeather from '../api/get-currentWeather';
+import useGetCurrentWeather from '../api/get-currentWeather';
 
 const CurrentWeatherWidget = () => {
-  const { data } = GetCurrentWeather();
+  const { data } = useGetCurrentWeather();
   console.log('🚀 ~ CurrentWeatherWidget ~ data:', data);
 
   return (

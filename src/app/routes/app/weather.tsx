@@ -1,8 +1,10 @@
 import AirPollutionWidget from '@/features/AirPollution/components/AirPollution-widget';
+import ChanceOfRainWidget from '@/features/ChanceOfRain/components/ChanceOfRain-widget';
 import CurrentWeatherWidget from '@/features/CurrentWeather/components/CurrentWeather-widget';
 import HourlyForecastWidget from '@/features/HourlyForecast/components/HourlyForecast-widget';
 import PrecipitationWidget from '@/features/Precipitation/components/Precipitation-widget';
 import UVIndexWidget from '@/features/UVIndex/components/UVIndex-widget';
+import WindSpeedAndDirection from '@/features/WindSpeedAndDirection/components/WindSpeedAndDirection-widget';
 
 const Weather = () => {
   return (
@@ -24,7 +26,7 @@ const Weather = () => {
         </div>
         <div className="grid grid-cols-2 gap-4">
           <UVIndexWidget />
-          <PrecipitationWidget />
+          <WindSpeedAndDirection />
           <UVIndexWidget />
           <PrecipitationWidget />
         </div>
@@ -40,7 +42,7 @@ const Weather = () => {
             </div>
           </div>
         </div>
-        <HourlyForecastWidget />
+        <ChanceOfRainWidget />
       </div>
     </div>
   );
