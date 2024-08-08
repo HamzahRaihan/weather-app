@@ -1,3 +1,4 @@
+import Navigation from '@/components/ui/navigation';
 import { Suspense } from 'react';
 import { Outlet } from 'react-router';
 
@@ -11,6 +12,7 @@ const RootLayout = () => {
           </div>
         }
       >
+        <Navigation />
         <Outlet />
       </Suspense>
     </div>
