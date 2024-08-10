@@ -28,7 +28,7 @@ const WindSpeedAndDirection = () => {
         <div>
           <div className="flex gap-2 items-center">
             <FaWind />
-            <p className="font-bold text-sm">Wind Speed (10m)</p>
+            <p className="font-bold lg:text-sm text-xs">Wind Speed (10m)</p>
           </div>
           <div className="relative flex justify-center align-middle mt-16 items-center h-full w-full">
             <div className="absolute h-32 w-32 dark:invert">

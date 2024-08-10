@@ -17,8 +17,15 @@ export const weatherApi = createApi({
       query: ({ lat, lon }: LatitudeAndLongitude) =>
         `forecast?lat=${lat}&lon=${lon}&appid=${APIKey}`,
     }),
+    getAirPollution: builder.query({
+      query: ({ lat, lon }: LatitudeAndLongitude) =>
+        `air_pollution?lat=${lat}&lon=${lon}&appid=${APIKey}`,
+    }),
   }),
 });
 
-export const { useGetCurrentWeatherQuery, useGetHourlyForecastQuery } =
-  weatherApi;
+export const {
+  useGetCurrentWeatherQuery,
+  useGetHourlyForecastQuery,
+  useGetAirPollutionQuery,
+} = weatherApi;

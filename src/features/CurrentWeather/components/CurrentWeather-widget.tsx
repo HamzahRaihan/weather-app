@@ -52,7 +52,7 @@ const CurrentWeatherWidget = () => {
             <div className="font-bold text-7xl">
               {Math.round(data?.main?.temp)}&deg;
             </div>
-            <div className="flex flex-col">
+            <div className="flex flex-col lg:text-base text-xs">
               <p>
                 Real feel{' '}
                 <span className="font-bold">
@@ -74,7 +74,7 @@ const CurrentWeatherWidget = () => {
             </div>
           </div>
 
-          <div className="flex flex-col justify-between">
+          <div className="flex flex-col justify-between lg:text-base text-xs">
             <p className="text-right font-bold text-lg">
               {getLocalTime(data?.timezone, data?.dt)?.time}
             </p>

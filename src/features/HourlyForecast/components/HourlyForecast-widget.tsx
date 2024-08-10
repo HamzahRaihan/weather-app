@@ -38,7 +38,8 @@ const HourlyForecastWidget = () => {
               </p>
               <img
                 src={`https://openweathermap.org/img/wn/${list.weather[0].icon}@2x.png`}
-                alt=""
+                alt={`${list.weather[0].icon}`}
+                width={50}
               />
               <p className="text-center">
                 {Math.round(list.main.temp).toString().slice(0, 2)}&deg;
