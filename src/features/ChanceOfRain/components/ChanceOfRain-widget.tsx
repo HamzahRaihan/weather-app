@@ -6,7 +6,6 @@ import Chart, { BarController } from 'chart.js/auto';
 
 const ChanceOfRainWidget = () => {
   const { data, isSuccess } = useGetChanceOfRain();
-  console.log('🚀 ~ ChanceOfRainWidget ~ data:', data);
 
   const [, setChart] = useState<Chart<'bar', number[], string> | null>(null);
 

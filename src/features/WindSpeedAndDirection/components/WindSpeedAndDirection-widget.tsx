@@ -4,7 +4,6 @@ import useGetWindSpeedAndDirection from '../api/get-windSpeedAndDirection';
 
 const WindSpeedAndDirection = () => {
   const { data } = useGetWindSpeedAndDirection();
-  console.log('🚀 ~ WindSpeedAndDirection ~ data:', data);
 
   // define type and returning wind speed and direction value by current hour
   const getCurrentHourData = (
@@ -22,9 +21,6 @@ const WindSpeedAndDirection = () => {
 
   const rotate = getCurrentHourData('wind_direction_10m');
   const speed = getCurrentHourData('wind_speed_10m');
-
-  console.log('🚀 ~ Current Hour Wind Direction:', rotate);
-  console.log('🚀 ~ Current Hour Wind Speed:', speed);
 
   return (
     <Card>

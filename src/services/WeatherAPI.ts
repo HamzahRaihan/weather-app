@@ -6,14 +6,19 @@ const APIKey = import.meta.env.VITE_API_KEY;
 export const weatherApi = createApi({
   reducerPath: 'weatherApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://api.openweathermap.org/',
+    baseUrl: 'https://api.openweathermap.org/data/2.5/',
   }),
   endpoints: (builder) => ({
     getCurrentWeather: builder.query({
       query: ({ lat, lon }: LatitudeAndLongitude) =>
-        `data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${APIKey}`,
+        `weather?lat=${lat}&lon=${lon}&units=metric&appid=${APIKey}`,
+    }),
+    getHourlyForecast: builder.query({
+      query: ({ lat, lon }: LatitudeAndLongitude) =>
+        `forecast?lat=${lat}&lon=${lon}&appid=${APIKey}`,
     }),
   }),
 });
 
-export const { useGetCurrentWeatherQuery } = weatherApi;
+export const { useGetCurrentWeatherQuery, useGetHourlyForecastQuery } =
+  weatherApi;

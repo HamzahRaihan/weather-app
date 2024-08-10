@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 
 const CurrentWeatherWidget = () => {
   const { data } = useGetCurrentWeather();
-  console.log('🚀 ~ CurrentWeatherWidget ~ data:', data);
+
   const [weatherIcon, setWeatherIcon] = useState('');
 
   function getLocalTime(
