@@ -15,8 +15,15 @@ export const openMateoApi = createApi({
       query: ({ lat, lon }: LatitudeAndLongitude) =>
         `?latitude=${lat}&longitude=${lon}&hourly=wind_speed_10m,wind_direction_10m&timezone=Asia%2FSingapore&forecast_days=1`,
     }),
+    getPrecipitation: builder.query({
+      query: ({ lat, lon }: LatitudeAndLongitude) =>
+        `?latitude=${lat}&longitude=${lon}&hourly=precipitation&timezone=Asia%2FSingapore&forecast_days=1`,
+    }),
   }),
 });
 
-export const { useGetChanceOfRainQuery, useGetWindSpeedAndDirectionQuery } =
-  openMateoApi;
+export const {
+  useGetChanceOfRainQuery,
+  useGetWindSpeedAndDirectionQuery,
+  useGetPrecipitationQuery,
+} = openMateoApi;

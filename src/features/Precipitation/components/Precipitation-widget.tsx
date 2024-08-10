@@ -1,7 +1,12 @@
 import { Card, CardContent } from '@/components/ui/card';
 import { BiSolidDroplet } from 'react-icons/bi';
+import GetPrecipitation from '../api/get-precipitation';
 
 const PrecipitationWidget = () => {
+  const { data } = GetPrecipitation();
+  console.log('🚀 ~ PrecipitationWidget ~ data:', data);
+  const date = new Date().getHours();
+
   return (
     <Card>
       <CardContent>
@@ -11,8 +16,10 @@ const PrecipitationWidget = () => {
             <p>Precipitation</p>
           </div>
           <div className="flex flex-col gap-1">
-            <p className="font-bold text-xl">0mm</p>
-            <p className="text-sm">in last 3 hours</p>
+            <p className="font-bold text-xl">
+              {data?.hourly?.precipitation[date]}
+            </p>
+            <p className="text-xs">in the last 1 Hour</p>
           </div>
         </div>
       </CardContent>

@@ -6,6 +6,7 @@ import Chart, { BarController } from 'chart.js/auto';
 
 const ChanceOfRainWidget = () => {
   const { data, isSuccess } = useGetChanceOfRain();
+  console.log('🚀 ~ ChanceOfRainWidget ~ data:', data);
 
   const [, setChart] = useState<Chart<'bar', number[], string> | null>(null);
 
@@ -23,9 +24,9 @@ const ChanceOfRainWidget = () => {
 
   useEffect(() => {
     if (chartRef.current && isSuccess) {
-      const hourlyData: Date[] = data?.hourly?.time?.slice(0, 7);
+      const hourlyData: Date[] = data?.hourly?.time;
       const precipitationProbability: number[] =
-        data?.hourly?.precipitation_probability?.slice(0, 7);
+        data?.hourly?.precipitation_probability;
       const convertedHour = hourlyData?.map((item) => convertToHour(item));
 
       Chart.register(BarController);
@@ -65,7 +66,7 @@ const ChanceOfRainWidget = () => {
                 display: true,
               },
               ticks: {
-                stepSize: 33,
+                stepSize: 10,
                 callback: (value) => {
                   if (Number(value) <= 5) {
                     return 'Minimal';
