@@ -2,7 +2,7 @@ import { useGetChanceOfRainQuery } from '@/services/OpenMateoAPI';
 import { RootState } from '@/states/store';
 import { useSelector } from 'react-redux';
 
-const useGetCurrentWeather = () => {
+const useGetChanceOfRain = () => {
   const { lat, lon } = useSelector(
     (state: RootState) => state.geolocation.geolocation
   );
@@ -14,4 +14,4 @@ const useGetCurrentWeather = () => {
   return { data, isLoading, isError, isSuccess };
 };
 
-export default useGetCurrentWeather;
+export default useGetChanceOfRain;
