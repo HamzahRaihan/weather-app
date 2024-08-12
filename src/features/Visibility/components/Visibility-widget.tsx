@@ -1,7 +1,9 @@
 import { Card, CardContent } from '@/components/ui/card';
 import { FaEye } from 'react-icons/fa6';
+import useGetVisibility from '../api/get-visibility';
 
 const VisibilityWidget = () => {
+  const { describeVisibility, distanceFormat, data } = useGetVisibility();
   return (
     <Card className="h-40">
       <CardContent className="h-full">
@@ -11,10 +13,12 @@ const VisibilityWidget = () => {
               <FaEye />
               <p className="font-bold text-sm">Visibility</p>
             </div>
-            <p className="text-xl font-bold">8 km</p>
+            <p className="text-xl font-bold">
+              {distanceFormat(data?.visibility)}
+            </p>
           </div>
           <div className="text-xs text-zinc-300">
-            <p>It's perfecly clear right now.</p>
+            <p>{describeVisibility(data?.visibility)}</p>
           </div>
         </div>
       </CardContent>

@@ -1,7 +1,10 @@
 import { Card, CardContent } from '@/components/ui/card';
 import { WiBarometer } from 'react-icons/wi';
+import useGetPressure from '../api/get-pressure';
 
 const PressureWidget = () => {
+  const { describePressure, data } = useGetPressure();
+
   return (
     <Card className="h-40">
       <CardContent className="h-full">
@@ -11,10 +14,10 @@ const PressureWidget = () => {
               <WiBarometer />
               <p className="font-bold text-sm">Pressure</p>
             </div>
-            <p className="text-xl font-bold">1000 hPa</p>
+            <p className="text-xl font-bold">{data?.main?.pressure} hPa</p>
           </div>
           <div className="text-xs text-zinc-300">
-            <p>Low pressure</p>
+            <p>{describePressure(data?.main?.pressure)}</p>
           </div>
         </div>
       </CardContent>
