@@ -73,7 +73,7 @@ const AirPollutionWidget = () => {
               />
             </div>
           </div>
-          <div className="text-zinc-300 text-xs">
+          <div className="dark:text-zinc-300 text-xs">
             {alertPollution(data?.list[0]?.main?.aqi)?.alert}
           </div>
         </div>

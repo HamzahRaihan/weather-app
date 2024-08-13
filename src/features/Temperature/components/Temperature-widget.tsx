@@ -25,7 +25,7 @@ const TemperatureWidget = () => {
               {Math.round(data?.main?.feels_like)}&deg;
             </p>
           </div>
-          <div className="text-xs text-zinc-300">
+          <div className="text-xs dark:text-zinc-300">
             {tempDescribe(
               Math.round(data?.main.temp),
               Math.round(data?.main.feels_like)

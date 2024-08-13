@@ -19,6 +19,10 @@ export const openMateoApi = createApi({
       query: ({ lat, lon }: LatitudeAndLongitude) =>
         `?latitude=${lat}&longitude=${lon}&hourly=precipitation&timezone=Asia%2FSingapore&forecast_days=1`,
     }),
+    getUVIndex: builder.query({
+      query: ({ lat, lon }: LatitudeAndLongitude) =>
+        `?latitude=${lat}&longitude=${lon}&daily=uv_index_max,uv_index_clear_sky_max&forecast_days=1`,
+    }),
   }),
 });
 
@@ -26,4 +30,5 @@ export const {
   useGetChanceOfRainQuery,
   useGetWindSpeedAndDirectionQuery,
   useGetPrecipitationQuery,
+  useGetUVIndexQuery,
 } = openMateoApi;

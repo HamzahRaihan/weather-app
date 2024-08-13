@@ -16,7 +16,7 @@ const PressureWidget = () => {
             </div>
             <p className="text-xl font-bold">{data?.main?.pressure} hPa</p>
           </div>
-          <div className="text-xs text-zinc-300">
+          <div className="text-xs dark:text-zinc-300">
             <p>{describePressure(data?.main?.pressure)}</p>
           </div>
         </div>

@@ -31,7 +31,7 @@ const SunsetWidget = () => {
               {currentTime(data?.sys?.sunset, data?.timezone)}
             </p>
           </div>
-          <div className="text-xs text-zinc-300">
+          <div className="text-xs dark:text-zinc-300">
             <p>Sunrise {currentTime(data?.sys?.sunrise, data?.timezone)}</p>
           </div>
         </div>

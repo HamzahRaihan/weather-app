@@ -17,7 +17,7 @@ const VisibilityWidget = () => {
               {distanceFormat(data?.visibility)}
             </p>
           </div>
-          <div className="text-xs text-zinc-300">
+          <div className="text-xs dark:text-zinc-300">
             <p>{describeVisibility(data?.visibility)}</p>
           </div>
         </div>
