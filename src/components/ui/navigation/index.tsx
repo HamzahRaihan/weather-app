@@ -18,7 +18,6 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-  CommandSeparator,
 } from '../command';
 import { useState, ChangeEvent } from 'react';
 
