@@ -10,7 +10,7 @@ const PressureWidget = () => {
       <CardContent className="h-full">
         <div className="flex flex-col justify-between h-full">
           <div>
-            <div className="flex items-center gap-1 mb-2">
+            <div className="flex items-center text-2xl mb-2">
               <WiBarometer />
               <p className="font-bold text-sm">Pressure</p>
             </div>
