@@ -3,6 +3,7 @@ import geolocationSlice from './geolocation/geoloctionSlice';
 import { weatherApi } from '@/services/WeatherAPI';
 import { openMateoApi } from '@/services/OpenMateoAPI';
 import searchSlice from './search/searchSlice';
+import { geopifyAPI } from '@/services/GeopifyAPI';
 
 export const store = configureStore({
   reducer: {
@@ -10,11 +11,13 @@ export const store = configureStore({
     location: searchSlice,
     [weatherApi.reducerPath]: weatherApi.reducer,
     [openMateoApi.reducerPath]: openMateoApi.reducer,
+    [geopifyAPI.reducerPath]: geopifyAPI.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat([
       weatherApi.middleware,
       openMateoApi.middleware,
+      geopifyAPI.middleware,
     ]),
 });
 

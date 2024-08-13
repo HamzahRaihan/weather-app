@@ -1,4 +1,4 @@
-import { FaceIcon, MoonIcon, SunIcon } from '@radix-ui/react-icons';
+import { MoonIcon, SunIcon } from '@radix-ui/react-icons';
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -16,22 +16,37 @@ import {
   CommandEmpty,
   CommandGroup,
   CommandInput,
-  CommandItem,
   CommandList,
 } from '../command';
-import { useState, ChangeEvent } from 'react';
+import { useState, ChangeEvent, useEffect } from 'react';
+import { useGetAutocompleteLocationQuery } from '@/services/GeopifyAPI';
 
 const Navigation = () => {
   const location = useSelector((state: RootState) => state.location.location);
   const [search, setSearch] = useState<string>('');
-  console.log('🚀 ~ Navigation ~ search:', search);
+  const [suggestion, setSuggestion] = useState<any[] | undefined>([]);
+  console.log('🚀 ~ Navigation ~ suggestion:', suggestion);
+
+  const { data } = useGetAutocompleteLocationQuery(search);
+
+  useEffect(() => {
+    const getLocation = async (): Promise<void> => {
+      if (!search || '') {
+        setSuggestion([]);
+      }
+      if (search) {
+        const locationSugestion = await data?.features;
+        setSuggestion(locationSugestion);
+      }
+    };
+    getLocation();
+  }, [data, search]);
+
   const { setTheme } = useTheme();
 
   function handleSearch(event: ChangeEvent<HTMLInputElement>) {
     const target = event.target as HTMLInputElement;
-    if (target) {
-      setSearch(target.value);
-    }
+    setSearch(target.value);
   }
 
   return (
@@ -42,7 +57,7 @@ const Navigation = () => {
         </span>{' '}
         {location}
       </h1>
-      <div className="dark:bg-zinc-800 rounded-md lg:w-1/2 w-full">
+      <div className="relative dark:bg-zinc-800 rounded-md lg:w-1/2 w-full">
         <Command className="rounded-lg border">
           <CommandInput
             placeholder="Search location..."
@@ -50,13 +65,29 @@ const Navigation = () => {
             value={search}
           />
 
-          <CommandList className={`${search ? '' : 'hidden'}`}>
-            <CommandEmpty>No results found.</CommandEmpty>
+          <CommandList
+            className={`${search ? '' : 'hidden'} absolute z-10 bg-white dark:bg-[#09090b] border top-10 rounded-lg w-full right-0 shadow-lg`}
+          >
             <CommandGroup heading="Suggestions">
-              <CommandItem>
-                <FaceIcon className="mr-2 h-4 w-4" />
-                <span>Search Emoji</span>
-              </CommandItem>
+              {suggestion?.length === 0 ? (
+                <CommandEmpty>No results found.</CommandEmpty>
+              ) : (
+                suggestion?.map((item) => {
+                  return (
+                    <div
+                      className="flex gap-2 items-center p-1 dark:hover:bg-zinc-900 hover:bg-zinc-100 duration-150 cursor-pointer rounded-md"
+                      key={item.id}
+                    >
+                      <FaLocationDot />
+                      <span>
+                        {item.properties.city
+                          ? `${item.properties.city}, ${item.properties.country}`
+                          : item.properties.country}
+                      </span>
+                    </div>
+                  );
+                })
+              )}
             </CommandGroup>
           </CommandList>
         </Command>
