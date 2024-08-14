@@ -51,15 +51,14 @@ const Weather = () => {
         </div>
         <ChanceOfRainWidget />
       </div>
+
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
-        <div className="col-span-3 flex flex-col gap-3">
+        <div className="col-span-2 lg:col-span-3 flex flex-col gap-3">
           <h1 className="text-md font-bold">Precipitation Map</h1>
           <WeatherMapWidget />
         </div>
-        <div className="col-span-1 flex flex-col gap-3">
+        <div className="lg:col-span-1 col-span-2 flex flex-col gap-3">
           <h1 className="text-md font-bold">Some Other Cities</h1>
-          <OtherCitiesWidget />
-          <OtherCitiesWidget />
           <OtherCitiesWidget />
         </div>
       </div>
