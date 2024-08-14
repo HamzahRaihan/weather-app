@@ -100,7 +100,10 @@ const Navigation = () => {
                       variant="ghost"
                       className="flex gap-2 justify-start items-center p-1 dark:hover:bg-zinc-900 hover:bg-zinc-100 duration-150 cursor-pointer rounded-md w-full"
                       value={item.properties}
-                      onClick={() => handleGetLocation(item.properties)}
+                      onClick={() => {
+                        handleGetLocation(item.properties);
+                        setSearch('');
+                      }}
                       key={item.id}
                     >
                       <FaLocationDot />
