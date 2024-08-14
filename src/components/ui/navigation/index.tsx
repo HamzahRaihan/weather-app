@@ -9,7 +9,7 @@ import {
 import { Button } from '../button';
 import { useTheme } from '@/hooks/useTheme';
 import { FaLocationDot } from 'react-icons/fa6';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/states/store';
 import {
   Command,
@@ -20,12 +20,23 @@ import {
 } from '../command';
 import { useState, ChangeEvent, useEffect } from 'react';
 import { useGetAutocompleteLocationQuery } from '@/services/GeopifyAPI';
+import { setLocation } from '@/states/search/searchSlice';
+import { saveGeoCode } from '@/states/geolocation/geoloctionSlice';
+
+type LocationProps = {
+  city: string;
+  lat: number;
+  lon: number;
+  country: string;
+};
 
 const Navigation = () => {
   const location = useSelector((state: RootState) => state.location.location);
   const [search, setSearch] = useState<string>('');
   const [suggestion, setSuggestion] = useState<any[] | undefined>([]);
   console.log('🚀 ~ Navigation ~ suggestion:', suggestion);
+
+  const dispatch = useDispatch();
 
   const { data } = useGetAutocompleteLocationQuery(search);
 
@@ -47,6 +58,17 @@ const Navigation = () => {
   function handleSearch(event: ChangeEvent<HTMLInputElement>) {
     const target = event.target as HTMLInputElement;
     setSearch(target.value);
+  }
+
+  function handleGetLocation(item: LocationProps) {
+    const { lat, lon } = item;
+    if (!item.city) {
+      dispatch(setLocation(item.country));
+    }
+    if (item.city) {
+      dispatch(setLocation(item.city));
+    }
+    dispatch(saveGeoCode({ lat, lon }));
   }
 
   return (
@@ -74,17 +96,25 @@ const Navigation = () => {
               ) : (
                 suggestion?.map((item) => {
                   return (
-                    <div
-                      className="flex gap-2 items-center p-1 dark:hover:bg-zinc-900 hover:bg-zinc-100 duration-150 cursor-pointer rounded-md"
+                    <Button
+                      variant="ghost"
+                      className="flex gap-2 justify-start items-center p-1 dark:hover:bg-zinc-900 hover:bg-zinc-100 duration-150 cursor-pointer rounded-md w-full"
+                      value={item.properties}
+                      onClick={() => handleGetLocation(item.properties)}
                       key={item.id}
                     >
                       <FaLocationDot />
-                      <span>
-                        {item.properties.city
-                          ? `${item.properties.city}, ${item.properties.country}`
-                          : item.properties.country}
-                      </span>
-                    </div>
+                      <div className="flex flex-col justify-start items-start">
+                        <p>
+                          {item.properties.city
+                            ? `${item.properties.city}, ${item.properties.country}`
+                            : item.properties.country}
+                        </p>
+                        {item.properties.country && (
+                          <p className="text-xs">{item.properties.country}</p>
+                        )}
+                      </div>
+                    </Button>
                   );
                 })
               )}
@@ -92,6 +122,7 @@ const Navigation = () => {
           </CommandList>
         </Command>
       </div>
+
       <div className="lg:block lg:w-fit flex w-full items-center justify-between">
         <h1 className="lg:hidden flex items-center gap-1 flex-shrink-0">
           <span>
